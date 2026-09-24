@@ -4,72 +4,69 @@
     d = document.querySelector(".drop"),
     b = d?.querySelector("button");
 
-  const lockDownContent = () => {
-    document.addEventListener("contextmenu", (event) => {
-      const target = event.target;
-      if (target instanceof Element) {
-        if (
-          target.closest("img, svg, canvas, video, audio, picture") ||
-          target.tagName === "IMG"
-        ) {
+  const blockContextMenu = () => {
+    document.addEventListener(
+      "contextmenu",
+      (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      { capture: true }
+    );
+
+    document.addEventListener(
+      "mousedown",
+      (event) => {
+        if (event.button === 2) {
           event.preventDefault();
+          event.stopPropagation();
         }
-      }
-    });
+      },
+      { capture: true }
+    );
 
-    document.addEventListener("dragstart", (event) => {
-      const target = event.target;
-      if (target instanceof Element && target.closest("img, svg, canvas")) {
-        event.preventDefault();
-      }
-    });
+    document.addEventListener(
+      "dragstart",
+      (event) => {
+        if (event.target instanceof Element && event.target.closest("img, svg, canvas")) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      },
+      { capture: true }
+    );
 
-    document.addEventListener("keydown", (event) => {
-      const key = event.key.toLowerCase();
-      const blockedKeys = [
-        "f12",
-        "s",
-        "u",
-        "i",
-        "j",
-        "c",
-        "g",
-      ];
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        const key = event.key.toLowerCase();
+        const blockedCombo =
+          event.key === "F12" ||
+          (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) ||
+          (event.ctrlKey && ["u", "s"].includes(key)) ||
+          (event.metaKey && event.altKey && key === "i");
 
-      if (event.key === "Escape") {
-        n?.classList.remove("open");
-        d?.classList.remove("open");
-        return;
-      }
+        if (blockedCombo) {
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+        }
 
-      const inspectCombo =
-        (event.ctrlKey || event.metaKey) &&
-        (event.shiftKey || event.altKey) &&
-        key === "i";
+        if (event.key === "Escape") {
+          n?.classList.remove("open");
+          d?.classList.remove("open");
+        }
+      },
+      { capture: true }
+    );
 
-      const saveCombo = (event.ctrlKey || event.metaKey) && key === "s";
-      const viewSourceCombo = (event.ctrlKey || event.metaKey) && key === "u";
-      const devtoolsCombo = event.key === "F12";
-      const blockedCombo =
-        inspectCombo || saveCombo || viewSourceCombo || devtoolsCombo;
-
-      if (blockedCombo) {
-        event.preventDefault();
-        return;
-      }
-
-      if ((event.ctrlKey || event.metaKey) && blockedKeys.includes(key)) {
-        event.preventDefault();
-      }
-    });
-
-    document.querySelectorAll("img").forEach((img) => {
-      img.setAttribute("draggable", "false");
-      img.oncontextmenu = () => false;
+    document.querySelectorAll("img, canvas, svg").forEach((element) => {
+      element.setAttribute("draggable", "false");
+      element.oncontextmenu = () => false;
     });
   };
 
-  lockDownContent();
+  blockContextMenu();
 
   m?.addEventListener("click", () => {
     const o = n.classList.toggle("open");
