@@ -596,6 +596,15 @@ form {
   border-radius: 20px;
   background: var(--soft);
 }
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 label {
   display: block;
   margin-bottom: 16px;
