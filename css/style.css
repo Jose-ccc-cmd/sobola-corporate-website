@@ -114,6 +114,9 @@ nav > a,
   font-weight: 700;
   color: #535a6d;
 }
+nav.open {
+  display: flex;
+}
 .drop {
   position: relative;
 }
@@ -711,14 +714,197 @@ textarea {
   border-radius: 8px;
   font: inherit;
 }
-@media (max-width: 850px) {
+@media (max-width: 980px) {
+  .productwide,
+  .feature-split,
+  .two,
+  .herogrid,
+  .about-hero-grid,
+  .footergrid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-copy {
+    max-width: none;
+  }
+
+  .grid3,
+  .grid4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .container {
+    width: min(calc(100% - 20px), 1180px);
+  }
+
+  header {
+    overflow: visible;
+    z-index: 30;
+  }
+
+  .nav {
+    position: relative;
+    min-height: 72px;
+    height: auto;
+    padding: 14px 0;
+    align-items: center;
+    overflow: visible;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--navy);
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: none;
+    overflow: visible;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow);
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav > a,
+  .drop > button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: var(--navy);
+    text-align: left;
+  }
+
+  nav > a:hover,
+  .drop > button:hover {
+    background: var(--soft);
+  }
+
+  .drop {
+    width: 100%;
+  }
+
+  .dropmenu {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-height: none;
+    margin-top: 8px;
+    border-radius: 12px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .drop:hover .dropmenu,
+  .drop:focus-within .dropmenu,
+  .drop.open .dropmenu {
+    display: block;
+    transform: none;
+  }
+
+  .hero,
+  .section,
+  .pagehero,
+  .producthero {
+    padding: 72px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 11vw, 3.4rem);
+  }
+
+  .brandcard,
+  .factbox {
+    padding: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn,
+  .actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grid3,
+  .grid4 {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-card img,
+  .visual-card.highlight img,
+  .product-card .media,
+  .media {
+    height: 220px;
+  }
+
+  .about-hero {
+    padding-top: 90px;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
   }
-  .contact-hero {
-    padding-top: 90px;
+
+  .contact-panel,
+  .contact-form-panel,
+  .contact-form-panel form {
+    border-radius: 18px;
+  }
+
+  .contact-panel,
+  .contact-form-panel form {
+    padding: 18px 16px;
+  }
+
+  .location,
+  .footergrid {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .footergrid {
+    display: grid;
   }
 }
+
 .location {
   display: flex;
   justify-content: space-between;
@@ -768,6 +954,8 @@ footer span {
     left: 15px;
     right: 15px;
     display: none;
+    max-height: none;
+    overflow: visible;
     padding: 18px;
     background: #fff;
     border: 1px solid var(--line);
@@ -778,16 +966,22 @@ footer span {
     display: grid;
   }
   .dropmenu {
-    position: static;
-    width: auto;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
     display: none;
     opacity: 1;
     visibility: visible;
     transform: none;
     box-shadow: none;
+    overflow: visible;
   }
+  .drop:hover .dropmenu,
+  .drop:focus-within .dropmenu,
   .drop.open .dropmenu {
     display: block;
+    transform: none;
   }
   .herogrid,
   .two,
