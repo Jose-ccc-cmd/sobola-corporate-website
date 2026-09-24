@@ -50,61 +50,65 @@
       </div>
     </header>
     <main id="main">
-      <section class="pagehero">
-        <div class="container">
-          <span class="eyebrow">Contact Us</span>
+      <section class="contact-hero">
+        <div class="container contact-hero-inner">
+          <span class="eyebrow">Contact us</span>
           <h1>Talk to Sobola Finance Ltd</h1>
         </div>
       </section>
-      <section class="section">
-        <div class="container two">
-          <div>
+      <section class="section contact-section">
+        <div class="container contact-grid">
+          <div class="contact-panel">
             <h2>Contact details</h2>
-            <p>
-              <b>Email</b><br /><a href="mailto:support@sobola.org"
-                >support@sobola.org</a
-              >
-            </p>
-            <p>
-              <b>Telephone</b><br /><a href="tel:+256730728831"
-                >+256 730 728 831</a
-              ><br /><a href="tel:+256730728830">+256 730 728 830</a>
-            </p>
-            <p>
-              <b>Office</b><br />Mukalazi Zone A, Bukoto I, Nakawa Division,
-              Kampala<br />P.O. Box 116553, Kampala GPO
-            </p>
-          </div>
-          <form
-            id="contact-form"
-            action="mailto:support@sobola.org"
-            method="post"
-            enctype="text/plain"
-          >
-            <label>Name<input required name="name" autocomplete="name" /></label>
-            <label>Email<input required type="email" name="email" autocomplete="email" /></label>
-            <label>
-              Message
-              <textarea required name="message" rows="6" autocomplete="off"></textarea>
-            </label>
-
-            <div class="hp-field" aria-hidden="true">
-              <label for="company_website">Leave this field empty</label>
-              <input
-                type="text"
-                id="company_website"
-                name="company_website"
-                tabindex="-1"
-                autocomplete="off"
-                aria-hidden="true"
-              />
+            <div class="contact-list">
+              <p>
+                <b>Email</b><br /><a href="mailto:support@sobola.org"
+                  >support@sobola.org</a
+                >
+              </p>
+              <p>
+                <b>Telephone</b><br /><a href="tel:+256730728831"
+                  >+256 730 728 831</a
+                ><br /><a href="tel:+256730728830">+256 730 728 830</a>
+              </p>
+              <p>
+                <b>Office</b><br />Mukalazi Zone A, Bukoto I, Nakawa Division,
+                Kampala<br />P.O. Box 116553, Kampala GPO
+              </p>
             </div>
+          </div>
+          <div class="contact-form-panel">
+            <form
+              id="contact-form"
+              action="mailto:support@sobola.org"
+              method="post"
+              enctype="text/plain"
+            >
+              <label>Name<input required name="name" autocomplete="name" /></label>
+              <label>Email<input required type="email" name="email" autocomplete="email" /></label>
+              <label>
+                Message
+                <textarea required name="message" rows="6" autocomplete="off"></textarea>
+              </label>
 
-            <input type="hidden" id="form_token" name="form_token" value="" />
-            <input type="hidden" id="form_started" name="form_started" value="" />
+              <div class="hp-field" aria-hidden="true">
+                <label for="company_website">Leave this field empty</label>
+                <input
+                  type="text"
+                  id="company_website"
+                  name="company_website"
+                  tabindex="-1"
+                  autocomplete="off"
+                  aria-hidden="true"
+                />
+              </div>
 
-            <button class="btn" type="submit">Send Email</button>
-          </form>
+              <input type="hidden" id="form_token" name="form_token" value="" />
+              <input type="hidden" id="form_started" name="form_started" value="" />
+
+              <button class="btn" type="submit">Send Email</button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
