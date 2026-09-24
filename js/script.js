@@ -145,16 +145,19 @@
         }
       });
 
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
+        const submitButton = form.querySelector("#sendButton");
+        const buttonText = form.querySelector("#buttonText");
+        const statusBox = form.querySelector("#formStatus");
         const trapFilled = (trapField.value || "").trim().length > 0;
         const timeDelta = startedField.value ? Date.now() - Number(startedField.value) : 0;
         const tooFast = timeDelta > 0 && timeDelta < 1500;
-
         const suspicious = trapFilled || tooFast || form.dataset.botFlag === "true";
 
+        event.preventDefault();
+        event.stopPropagation();
+
         if (suspicious) {
-          event.preventDefault();
-          event.stopPropagation();
           writeLog("submit-blocked", {
             trapFilled,
             tooFast,
@@ -162,11 +165,68 @@
             token: tokenField.value || null,
             formId: form.id || "unknown",
           });
+          if (statusBox) {
+            statusBox.textContent = "Your message could not be submitted.";
+            statusBox.className = "error";
+          }
           form.reset();
           tokenField.value = makeToken();
           startedField.value = String(Date.now());
           return false;
         }
+
+        if (submitButton) submitButton.disabled = true;
+        if (buttonText) buttonText.textContent = "Sending...";
+        if (statusBox) {
+          statusBox.textContent = "Submitting your message...";
+          statusBox.className = "";
+        }
+
+        try {
+          const formData = new FormData(form);
+          const clientName = String(formData.get("name") || "Client").trim();
+          const clientEmail = String(formData.get("email") || "").trim();
+
+          formData.delete("company_website");
+          formData.delete("form_token");
+          formData.delete("form_started");
+
+          if (clientEmail) {
+            formData.set("_replyto", clientEmail);
+            formData.set("_subject", `Service inquiry from ${clientName || "Client"} (${clientEmail})`);
+          }
+
+          const response = await fetch(form.action, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+            },
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Submission failed");
+          }
+
+          form.reset();
+          tokenField.value = makeToken();
+          startedField.value = String(Date.now());
+
+          if (statusBox) {
+            statusBox.textContent = "Your message has been sent successfully.";
+            statusBox.className = "success";
+          }
+        } catch (error) {
+          if (statusBox) {
+            statusBox.textContent = "Your message could not be sent. Please email support@sobola.org directly.";
+            statusBox.className = "error";
+          }
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+          if (buttonText) buttonText.textContent = "Send Email";
+        }
+
+        return false;
       });
     });
   };

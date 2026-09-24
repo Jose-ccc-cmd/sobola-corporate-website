@@ -78,14 +78,18 @@
             </div>
           </div>
           <div class="contact-form-panel">
-            <form
-              id="contact-form"
-              action="mailto:support@sobola.org"
-              method="post"
-              enctype="text/plain"
-            >
+            <form id="contact-form" action="https://formsubmit.co/ajax/support@sobola.org" method="POST">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New message from Sobola Finance Ltd website" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_replyto" value="" />
+
               <label>Name<input required name="name" autocomplete="name" /></label>
               <label>Email<input required type="email" name="email" autocomplete="email" /></label>
+              <label>
+                Subject
+                <input required name="subject" type="text" autocomplete="off" />
+              </label>
               <label>
                 Message
                 <textarea required name="message" rows="6" autocomplete="off"></textarea>
@@ -106,7 +110,10 @@
               <input type="hidden" id="form_token" name="form_token" value="" />
               <input type="hidden" id="form_started" name="form_started" value="" />
 
-              <button class="btn" type="submit">Send Email</button>
+              <button class="btn" id="sendButton" type="submit">
+                <span id="buttonText">Send Email</span>
+              </button>
+              <p id="formStatus" role="status" aria-live="polite"></p>
             </form>
           </div>
         </div>

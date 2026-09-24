@@ -675,6 +675,19 @@ form {
   width: auto;
   min-width: 180px;
 }
+#formStatus {
+  margin: 16px 0 0;
+  min-height: 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+#formStatus.success {
+  color: #0d7a4b;
+}
+#formStatus.error {
+  color: #a33a3a;
+}
 .hp-field {
   position: absolute;
   left: -9999px;
