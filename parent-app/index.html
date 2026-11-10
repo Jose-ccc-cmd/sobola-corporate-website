@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="Pocket Pay parent portal for viewing linked student balances and account activity." />
+    <meta name="description" content="Pocket Pay Parent is in development. Preview the app shell and check Sobola Finance for launch updates." />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Pocket Pay" />
@@ -29,12 +29,32 @@
     </header>
 
     <main id="main">
+      <section class="launch-screen" id="launch-screen" aria-labelledby="launch-title">
+        <div class="launch-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3v6m0 0 4-4m-4 4L8 5m4 4v4m-7 8h14a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2Z" /></svg>
+        </div>
+        <p class="eyebrow">POCKET PAY PARENT</p>
+        <h1 id="launch-title">Still in development</h1>
+        <p class="launch-copy">We’re preparing the Pocket Pay Parent app. Sign-in and live student account information are not available yet.</p>
+        <p class="launch-note">Please check the Sobola Finance website for updates about availability.</p>
+        <div class="launch-actions">
+          <button class="primary-button" id="preview-button" type="button">Explore app preview</button>
+          <a class="secondary-button" href="../index.html">Visit Sobola website</a>
+        </div>
+        <p class="preview-disclaimer">The preview contains no live parent or student data.</p>
+      </section>
+
+      <div id="preview-app" hidden>
       <section class="welcome-row" aria-labelledby="welcome-title">
         <div>
           <p class="eyebrow">POCKET PAY</p>
           <h1 id="welcome-title">Parent dashboard</h1>
           <p class="welcome-copy">View a linked student account and its activity.</p>
         </div>
+        <button class="back-home" id="exit-preview" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg>
+          Back to welcome
+        </button>
       </section>
 
       <nav class="tabs" aria-label="Parent app sections">
@@ -95,6 +115,10 @@
         <div class="panel activity-panel full-activity">
           <div class="panel-heading">
             <div><p class="eyebrow">ACCOUNT HISTORY</p><h2>Activity</h2></div>
+            <button class="back-home" type="button" data-open-view="overview">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg>
+              Back to home
+            </button>
           </div>
           <p class="empty-state">Sign in to view transactions for a linked student account.</p>
         </div>
@@ -102,13 +126,20 @@
 
       <section class="app-view" id="account" aria-label="Parent account" hidden>
         <article class="panel parent-card">
-          <p class="eyebrow">PARENT ACCOUNT</p>
+          <div class="panel-heading">
+            <p class="eyebrow">PARENT ACCOUNT</p>
+            <button class="back-home" type="button" data-open-view="overview">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg>
+              Back to home
+            </button>
+          </div>
           <div class="parent-profile"><span class="parent-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></span><div><h2>Sign in to Pocket Pay</h2><p>Access linked student accounts and balances.</p></div></div>
           <div class="account-row"><span>Account status</span><strong>Not signed in</strong></div>
           <a class="account-signin" href="https://sobola.org/portal">Sign in to your account</a>
         </article>
         <a class="support-link" href="mailto:support@sobola.org">Contact Sobola support <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></a>
       </section>
+      </div>
 
       <p class="app-message" id="app-message" role="status" aria-live="polite"></p>
     </main>

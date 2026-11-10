@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Pocket Pay Parent",
   "short_name": "Pocket Pay",
-  "description": "View linked student balances and account activity.",
+  "description": "Pocket Pay Parent is in development. Preview the app shell and check Sobola Finance for launch updates.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -1,4 +1,5 @@
 (() => {
+  const siteScript = document.currentScript;
   const m = document.querySelector(".menu"),
     n = document.querySelector("nav"),
     launcher = document.querySelector(".product-launcher"),
@@ -7,6 +8,122 @@
     loginMenu = document.querySelector(".login-menu"),
     loginButton = loginMenu?.querySelector(".login-toggle"),
     loginPanel = loginMenu?.querySelector(".login-options");
+
+  const showAppInstallPrompt = () => {
+    const installedMedia = window.matchMedia("(display-mode: standalone)");
+    const isInstalled = () =>
+      installedMedia.matches || navigator.standalone === true;
+    const isIosDevice = () =>
+      /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const dismissedKey = "sobola-app-install-dismissed";
+    const wasDismissed = () => {
+      try {
+        return sessionStorage.getItem(dismissedKey) === "true";
+      } catch (error) {
+        console.warn("Could not read the app install prompt preference.", error);
+        return false;
+      }
+    };
+    const setDismissed = () => {
+      try {
+        sessionStorage.setItem(dismissedKey, "true");
+      } catch (error) {
+        console.warn("Could not save the app install prompt preference.", error);
+      }
+    };
+
+    let deferredPrompt = null;
+    let promptElement = null;
+    let promptTimeout;
+
+    const closePrompt = (rememberDismissal) => {
+      window.clearTimeout(promptTimeout);
+      promptElement?.remove();
+      promptElement = null;
+      if (rememberDismissal) setDismissed();
+    };
+
+    const showPrompt = () => {
+      if (
+        promptElement ||
+        isInstalled() ||
+        wasDismissed()
+      ) {
+        return;
+      }
+
+      const appUrl = new URL("../parent-app/", siteScript.src);
+      const prompt = document.createElement("aside");
+      prompt.className = "app-install-prompt";
+      prompt.setAttribute("role", "region");
+      prompt.setAttribute("aria-label", "Install Pocket Pay Parent");
+      prompt.setAttribute("aria-live", "polite");
+      prompt.innerHTML = `
+        <img class="app-install-logo" src="${appUrl.href}pocket-pay-logo.png" alt="" width="42" height="52">
+        <div class="app-install-copy">
+          <strong>Get Pocket Pay on your phone</strong>
+          <p>Install Pocket Pay Parent and sign in to view linked student accounts.</p>
+        </div>
+        <div class="app-install-actions">
+          <button class="app-install-dismiss" type="button" aria-label="Dismiss install prompt">Not now</button>
+          <button class="app-install-action" type="button">Install app</button>
+        </div>
+      `;
+
+      const dismissButton = prompt.querySelector(".app-install-dismiss");
+      const actionButton = prompt.querySelector(".app-install-action");
+      dismissButton.addEventListener("click", () => closePrompt(true));
+      actionButton.addEventListener("click", async () => {
+        if (deferredPrompt) {
+          try {
+            await deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === "accepted") {
+              closePrompt(true);
+              return;
+            }
+          } catch (error) {
+            console.error("Could not open the app install prompt.", error);
+          }
+          deferredPrompt = null;
+          actionButton.textContent = "Open parent app";
+          prompt.querySelector(".app-install-copy p").textContent =
+            "Use your browser menu to install the app or add it to your home screen.";
+          return;
+        }
+
+        if (isIosDevice()) {
+          actionButton.textContent = "Got it";
+          actionButton.addEventListener(
+            "click",
+            () => closePrompt(true),
+            { once: true },
+          );
+          prompt.querySelector(".app-install-copy p").textContent =
+            "In Safari, tap Share, then choose Add to Home Screen.";
+          return;
+        }
+
+        window.location.assign(appUrl.href);
+      });
+
+      document.body.append(prompt);
+      promptElement = prompt;
+    };
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      deferredPrompt = event;
+    });
+
+    window.addEventListener("appinstalled", () => closePrompt(true));
+    installedMedia.addEventListener?.("change", (event) => {
+      if (event.matches) closePrompt(true);
+    });
+
+    promptTimeout = window.setTimeout(showPrompt, 10000);
+  };
 
   const closeLauncher = (restoreFocus = false) => {
     if (!launcher || !launcherButton || !launcherPanel) return;
@@ -268,6 +385,7 @@
 
   blockContextMenu();
   protectContactForm();
+  showAppInstallPrompt();
 
   m?.addEventListener("click", () => {
     const o = n.classList.toggle("open");

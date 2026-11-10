@@ -2,9 +2,15 @@
 
 This folder contains the website-installable Pocket Pay Parent app shell. Its visual design uses the supplied Pocket Pay logo, the website typography, and consistent line icons.
 
+## Development status
+
+The app opens to a development cover page. Visitors can open a public preview of the app shell, which contains no live parent or student information. The cover page directs visitors to the Sobola Finance website for launch updates; it does not collect contact details or provide individualized notifications. There is no shared bypass code.
+
 ## Important
 
 The app does not yet have a parent sign-in or a connection to live student accounts. It shows an empty account state and links to the existing Pocket Pay portal. Before displaying balances or transactions here, connect a secure authenticated API and review account access, privacy, and data handling. Do not add fictional student or financial data.
+
+The Activity and Account views include a **Back to home** control. The app reports offline, insecure-connection, installation, and service-worker errors in its status area. Authentication and account-data errors must be handled by the future supported integration; the current static app cannot inspect the separate portal's sign-in session.
 
 ## Install and test
 

@@ -118,6 +118,23 @@ h2 { margin-bottom: 0; font-size: 17px; line-height: 1.3; letter-spacing: -0.02e
 .panel { margin-top: 17px; padding: 19px 20px; }
 .panel-heading { margin-bottom: 12px; }
 .text-button { padding: 6px 0 6px 8px; border: 0; background: none; color: var(--purple-dark); cursor: pointer; font-size: 12px; font-weight: 800; white-space: nowrap; }
+.back-home { display: inline-flex; min-height: 36px; align-items: center; gap: 6px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--purple-dark); cursor: pointer; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.back-home svg { width: 15px; height: 15px; }
+.back-home:hover { background: #f1edfb; }
+.launch-screen { display: flex; min-height: min(660px, calc(100svh - 160px)); flex-direction: column; align-items: center; justify-content: center; padding: 48px 24px; text-align: center; }
+.launch-mark { display: grid; width: 68px; height: 68px; place-items: center; margin-bottom: 24px; border: 1px solid #e8e1f3; border-radius: 20px; background: #f6f3fb; color: var(--purple-dark); }
+.launch-mark svg { width: 32px; height: 32px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.launch-screen .eyebrow { margin-bottom: 9px; }
+.launch-screen h1 { max-width: 580px; margin: 0; color: var(--ink); font-size: clamp(32px, 6vw, 48px); letter-spacing: -1.5px; line-height: 1.08; }
+.launch-copy { max-width: 490px; margin: 17px 0 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.launch-note { margin: 12px 0 0; color: var(--ink); font-size: 13px; font-weight: 700; }
+.launch-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+.primary-button, .secondary-button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 0 18px; border: 1px solid var(--purple-dark); border-radius: 10px; font: inherit; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
+.primary-button { background: var(--purple-dark); color: #fff; }
+.primary-button:hover { filter: brightness(1.08); }
+.secondary-button { background: #fff; color: var(--purple-dark); }
+.secondary-button:hover { background: #f6f3fb; }
+.preview-disclaimer { margin: 18px 0 0; color: var(--muted); font-size: 11px; }
 .school-card { display: flex; align-items: center; gap: 12px; margin-top: 17px; padding: 15px 17px; }
 .school-icon { display: grid; width: 40px; height: 40px; min-width: 40px; place-items: center; border-radius: 13px; background: #f1edfb; color: var(--purple); }
 .school-icon svg { width: 21px; height: 21px; }
@@ -141,6 +158,8 @@ h2 { margin-bottom: 0; font-size: 17px; line-height: 1.3; letter-spacing: -0.02e
 .account-signin:hover { background: var(--purple-dark); }
 .support-link { display: inline-flex; gap: 6px; margin: 14px 0; color: var(--purple-dark); font-size: 12px; font-weight: 700; }
 .app-message { min-height: 20px; margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+.app-message[data-state="error"] { color: #a52e38; }
+.app-message[data-state="success"] { color: #26734d; }
 .app-footer { display: flex; justify-content: center; gap: 8px; padding: 15px 18px max(18px, env(safe-area-inset-bottom)); color: var(--muted); font-size: 11px; }
 .app-footer a { color: var(--purple-dark); font-weight: 700; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
@@ -155,6 +174,13 @@ h2 { margin-bottom: 0; font-size: 17px; line-height: 1.3; letter-spacing: -0.02e
   .balance-card { min-height: 178px; }
   .spending-card { min-height: 150px; }
   .panel { margin-top: 12px; padding: 16px; }
+  .panel-heading { align-items: flex-start; }
+  .back-home { gap: 4px; padding: 0 7px; font-size: 10px; }
+  .launch-screen { min-height: min(620px, calc(100svh - 140px)); padding: 32px 18px; }
+  .launch-screen h1 { letter-spacing: -1px; }
+  .launch-copy { font-size: 14px; }
+  .launch-actions { width: 100%; }
+  .launch-actions a, .launch-actions button { width: 100%; }
   .school-card { margin-top: 12px; padding: 13px; }
   .full-activity { margin-top: 0; }
 }
