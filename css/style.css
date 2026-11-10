@@ -825,6 +825,12 @@ nav.open {
   background: var(--soft);
   text-align: center;
 }
+.parent-app-disclaimer {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-align: left;
+}
 .about-hero .eyebrow,
 .about-hero h1,
 .about-hero p {
