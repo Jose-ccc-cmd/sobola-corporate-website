@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sobola.org/sitemap.xml
+Sitemap: https://website.sobola.org/sitemap.xml

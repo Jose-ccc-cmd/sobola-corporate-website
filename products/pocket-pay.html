@@ -3,26 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Pocket Pay | Smart Cashless School Payments | Sobola Finance Ltd</title>
+    <title>Pocket Pay Uganda | Cashless School Payments | Sobola Finance</title>
     <meta
       name="description"
-      content="Pocket Pay by Sobola Finance Ltd is a digital cashless payment solution connecting parents, students, schools and canteens through a simple school payment ecosystem."
-    />
-    <meta
-      name="keywords"
-      content="Pocket Pay, Sobola Finance, school payments Uganda, cashless school, digital pocket money, school canteen payments, parent school payment app, student wallet system, school fees payment, school payment portal"
+      content="Pocket Pay by Sobola Finance Ltd is a cashless school payment system in Uganda for student accounts, parent top-ups and digital canteen purchases."
     />
     <meta name="theme-color" content="#5b35d5" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Pocket Pay | Smart Cashless School Payments" />
+    <meta property="og:title" content="Pocket Pay Uganda | Cashless School Payments" />
     <meta
       property="og:description"
-      content="A simple digital payment ecosystem for parents, students, schools and canteens."
+      content="Pocket Pay by Sobola Finance Ltd is a cashless school payment system in Uganda for student accounts, parent top-ups and digital canteen purchases."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sobola.org/products/pocket-pay.html" />
-    <meta property="og:image" content="https://sobola.org/assets/logos/sobola-logo.png" />
-    <link rel="canonical" href="https://sobola.org/products/pocket-pay.html" />
+    <meta property="og:url" content="https://website.sobola.org/products/pocket-pay.html" />
+    <meta property="og:image" content="https://website.sobola.org/assets/logos/sobola-logo.png" />
+    <link rel="canonical" href="https://website.sobola.org/products/pocket-pay.html" />
     <link rel="icon" type="image/png" href="../assets/logos/sobola-logo.png" />
     <link
       rel="shortcut icon"
@@ -44,23 +40,46 @@
         ><button class="menu" aria-expanded="false">Menu</button>
         <nav>
           <a href="../index.html">Home</a><a href="../about.html">About Us</a>
-          <div class="drop">
-            <button aria-expanded="false">Products ▾</button>
-            <div class="dropmenu">
-              <a href="../products/pocket-pay.html"
-                ><b>Pocket Pay</b><small>Cashless school payments</small></a
-              ><a href="../products/gate-attendance.html"
-                ><b>Gate & Attendance</b
-                ><small>School checkpoint visibility</small></a
-              ><a href="../products/staff-attendance.html"
-                ><b>Staff Attendance</b
-                ><small>Staff access visibility</small></a
-              ><a href="../products.html"
-                ><b>All Products</b><small>View the full portfolio</small></a
-              >
+          <a href="../contact.html">Contact Us</a>
+          <div class="login-menu">
+            <button class="login-toggle" type="button" aria-expanded="false" aria-controls="login-options">Log in to Sobola Platforms</button>
+            <div class="login-options" id="login-options" hidden>
+              <p class="login-menu-title">Choose your portal</p>
+              <a href="https://sobola.org/portal"><span class="login-role-icon" aria-hidden="true">P</span><span class="login-role-copy"><strong>Parent</strong><small>Student account and top-ups</small></span></a>
+              <a href="https://sobola.org"><span class="login-role-icon" aria-hidden="true">S</span><span class="login-role-copy"><strong>School Admin</strong><small>School platform and records</small></span></a>
+              <a href="https://sobola.org"><span class="login-role-icon" aria-hidden="true">A</span><span class="login-role-copy"><strong>Attendant</strong><small>Gate and attendance access</small></span></a>
+              <a href="../index.html"><span class="login-role-icon" aria-hidden="true">G</span><span class="login-role-copy"><strong>Guest User</strong><small>Browse the Sobola website</small></span></a>
+              <a class="login-request" href="../account-request.html"><span class="login-role-icon" aria-hidden="true">+</span><span class="login-role-copy"><strong>No Account?</strong><small>Request parent account access</small></span></a>
             </div>
           </div>
-          <a href="../contact.html">Contact Us</a>
+          <div class="product-launcher">
+            <button class="launcher-toggle" type="button" aria-label="Sobola products" aria-expanded="false" aria-controls="sobola-products-panel" title="Sobola products">
+              <svg class="launcher-grid-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="5" r="1.7" /><circle cx="12" cy="5" r="1.7" /><circle cx="19" cy="5" r="1.7" />
+                <circle cx="5" cy="12" r="1.7" /><circle cx="12" cy="12" r="1.7" /><circle cx="19" cy="12" r="1.7" />
+                <circle cx="5" cy="19" r="1.7" /><circle cx="12" cy="19" r="1.7" /><circle cx="19" cy="19" r="1.7" />
+              </svg>
+              <span class="launcher-label">Products</span>
+            </button>
+            <div class="dropmenu" id="sobola-products-panel" aria-label="Sobola products" hidden>
+              <div class="launcher-heading"><h2>Our products</h2><p>Digital tools for schools and institutions</p></div>
+              <div class="launcher-grid">
+                <a class="launcher-card" href="../products/pocket-pay.html">
+                  <span class="launcher-icon launcher-icon-pay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="13" height="12" rx="3" /><path d="M7 10h6M7 14h3m8-5c1.3 1 1.3 5 0 6m2-8c2.5 2 2.5 8 0 10" /></svg></span>
+                  <span><b>Pocket Pay</b><small>Cashless school payments</small></span>
+                </a>
+                <a class="launcher-card" href="../products/gate-attendance.html">
+                  <span class="launcher-icon launcher-icon-gate" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15M9 20V8h6v12M3 20h18" /><path d="m11 14 2 2 4-5" /></svg></span>
+                  <span><b>Gate & Attendance</b><small>Student check-in and exits</small></span>
+                </a>
+                <a class="launcher-card" href="../products/staff-attendance.html">
+                  <span class="launcher-icon launcher-icon-staff" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0M18 5.5a3 3 0 0 1 0 5.8M20 15a5 5 0 0 1 2 4" /></svg></span>
+                  <span><b>Staff Attendance</b><small>Planned product</small></span>
+                </a>
+              </div>
+              <a class="launcher-all" href="../products.html">Browse all products <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
@@ -68,15 +87,13 @@
       <section class="producthero">
         <div class="container two">
           <div>
-            <img
-              class="pplogo"
-              src="../assets/images/wristband-payment-terminal.webp"
-              alt="Pocket Pay payment terminal"
-            /><span class="eyebrow">A Sobola Finance Ltd product</span>
+            <span class="eyebrow">A Sobola Finance Ltd product</span>
             <h1>Smart cashless payments for modern schools.</h1>
             <p>
-              Pocket Pay helps parents, students, schools and canteens manage
-              everyday school payments without relying heavily on physical cash.
+              Pocket Pay by Sobola Finance Ltd helps parents, students, schools
+              and canteens manage everyday school payments without relying
+              heavily on physical cash. It is a digital pocket-money and
+              student account solution for participating schools in Uganda.
             </p>
             <div class="actions">
               <a
@@ -91,7 +108,7 @@
           <img
             class="roundimg"
             src="../assets/images/wristband-payment-terminal.webp"
-            alt="Wristband presented to a payment terminal"
+            alt="Pocket Pay wristband being tapped on a payment terminal"
           />
         </div>
       </section>
@@ -127,10 +144,19 @@
           <h2>One product. Multiple experiences.</h2>
           <div class="grid4">
             <article>
+              <img
+                class="pocket-pay-role-image"
+                src="../assets/images/pocket-pay-parent-control.jpg"
+                alt="Pocket Pay graphic showing a parent managing a learner's account"
+                width="1600"
+                height="1009"
+                loading="lazy"
+                decoding="async"
+              />
               <h3>Parents</h3>
-              <p>Top up and review activity.A Parent can :</p>
+              <p>Parents can top up and review learner activity.</p>
               <ul>
-                <li>Top up on learner account</li>
+                <li>Top up a learner account</li>
                 <li>View transaction history</li>
                 <li>Set spending limits</li>
                 <li>Receive notifications</li>
@@ -138,8 +164,17 @@
               
             </article>
             <article>
+              <img
+                class="pocket-pay-role-image"
+                src="../assets/images/pocket-pay-tap-to-pay.jpg"
+                alt="Student tapping a Pocket Pay wristband at a canteen terminal"
+                width="1139"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
               <h3>Students</h3>
-              <p>Use approved funds without cash. Students can :</p>
+              <p>Students can use approved funds without carrying cash.</p>
               <ul>
                 <li>Make purchases at participating points</li>
                 <li>View their balance</li>
@@ -147,6 +182,15 @@
               </ul>
             </article>
             <article>
+              <img
+                class="pocket-pay-role-image"
+                src="../assets/images/pocket-pay-cashless-school.jpg"
+                alt="Pocket Pay wristband promoting a safer cashless school environment"
+                width="1600"
+                height="992"
+                loading="lazy"
+                decoding="async"
+              />
               <h3>Schools</h3>
               <p>Monitor relevant transactions.</p>
               <ul>
@@ -155,23 +199,167 @@
                 <li>Generate reports</li>
                 <li>Manage student accounts</li>
               </ul>
-
-              </ul>
             </article>
             <article>
+              <img
+                class="pocket-pay-role-image"
+                src="../assets/images/pocket-pay-reliable-technology.jpg"
+                alt="Pocket Pay point-of-sale terminal designed for busy school canteens"
+                width="1600"
+                height="1444"
+                loading="lazy"
+                decoding="async"
+              />
               <h3>Canteens</h3>
               <p>Receive digital payments.</p>
               <ul>
                 <li>Accept payments from students</li>
                 <li>View transaction history</li>
                 <li>Generate reports</li>
-                <li> Manage inventory</li>
+                <li>Manage inventory</li>
                 <li>Reconcile transactions</li>
               </ul>
-
-
             </article>
           </div>
+        </div>
+      </section>
+      <section class="section faq-section">
+        <div class="container">
+          <span class="eyebrow">Pocket Pay information</span>
+          <h2>Questions from parents and schools</h2>
+          <div class="faq-grid">
+            <details>
+              <summary>What is Pocket Pay by Sobola Finance?</summary>
+              <p>
+                Pocket Pay is Sobola Finance's digital school payment system
+                for student accounts and everyday purchases at participating
+                school points, such as a canteen. Parents can top up an account
+                and review its activity; learners can pay with a Pocket Pay
+                wristband at supported point-of-sale terminals. It can act as a
+                digital school wallet for school pocket money and purchases,
+                not as a school-fees collection service advertised here.
+              </p>
+            </details>
+            <details>
+              <summary>How can a parent send or top up pocket money?</summary>
+              <p>
+                A parent can add funds to a learner's Pocket Pay account
+                through the school's configured process. Top-up methods,
+                including whether mobile money is available, depend on the
+                school's setup. Check with your school or Sobola support before
+                sending money; the website does not list a universal mobile
+                money payment method.
+              </p>
+            </details>
+            <details>
+              <summary>Can parents track spending and view a balance?</summary>
+              <p>
+                Pocket Pay is designed to let parents check a learner's
+                balance, review transaction history, and set spending limits.
+                Schools can confirm which account controls, notifications, and
+                parent dashboard features are enabled for their implementation.
+              </p>
+            </details>
+            <details>
+              <summary>How do student payment wristbands work?</summary>
+              <p>
+                A learner taps a Pocket Pay wristband at a participating
+                canteen point-of-sale terminal. The published product
+                information does not specify whether a particular wristband
+                uses RFID or NFC, or whether it works as a school ID. Schools
+                comparing contactless or RFID wristband payment systems should
+                confirm the hardware, compatibility, and replacement process
+                with Sobola before purchase.
+              </p>
+            </details>
+            <details>
+              <summary>Is Pocket Pay suitable for boarding and day schools?</summary>
+              <p>
+                Pocket Pay is designed for school purchases, including canteen
+                payments. Whether a particular primary, secondary, boarding,
+                or day school can use it depends on its onboarding, accounts,
+                and participating payment points. Schools can contact Sobola
+                to discuss their needs and request a product demonstration.
+              </p>
+            </details>
+            <details>
+              <summary>Does a cashless school system remove all cash?</summary>
+              <p>
+                Pocket Pay can reduce the need for cash for purchases made at
+                participating school points. It does not mean every school
+                payment is cashless, and a school decides which purchases and
+                canteen points accept digital payments.
+              </p>
+            </details>
+            <details>
+              <summary>What transaction reports can a school or canteen review?</summary>
+              <p>
+                Pocket Pay provides school and canteen tools for viewing
+                relevant student activity, transaction histories, and reports.
+                Canteen teams can reconcile transactions in the product.
+                Specific reporting, reconciliation, and inventory workflows
+                depend on the school's setup.
+              </p>
+            </details>
+            <details>
+              <summary>How does Pocket Pay support safer student payments?</summary>
+              <p>
+                Digital student accounts and transaction records can help
+                schools and parents review purchases and reduce the cash
+                students carry. No payment system can promise to prevent every
+                loss or fraud. Ask the school how to report a lost wristband
+                and disable the associated account.
+              </p>
+            </details>
+            <details>
+              <summary>Where can schools ask about Pocket Pay pricing?</summary>
+              <p>
+                Sobola Finance does not publish Pocket Pay pricing on this
+                website. Ugandan schools can contact the team to discuss
+                availability, a demonstration, a school-specific quote,
+                payment methods, and partnership options. Pocket Pay customer
+                support is available through the contact details on this site.
+              </p>
+            </details>
+            <details>
+              <summary>How can a school introduce cashless canteen payments?</summary>
+              <p>
+                Schools can start by discussing their canteen points, student
+                accounts, parent top-ups, payment methods, and reporting needs
+                with Sobola Finance. Pocket Pay supports a gradual move toward
+                cashless payments for participating purchases; a school decides
+                how and when to introduce it.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container two pocket-pay-join">
+          <div>
+            <span class="eyebrow">Pocket Pay</span>
+            <h2>Join the digital school community.</h2>
+            <p>
+              Give your school community a simple way to make and manage
+              everyday cashless payments.
+            </p>
+            <a
+              class="btn"
+              href="https://sobola.org/portal"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Login to Top-Up</a
+            >
+          </div>
+          <img
+            class="pocket-pay-join-image"
+            src="../assets/images/pocket-pay-join-digital-school.jpg"
+            alt="Pocket Pay promotional graphic inviting schools to join digital payments"
+            width="1600"
+            height="1246"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
     </main>

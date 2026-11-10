@@ -1,8 +1,32 @@
 (() => {
   const m = document.querySelector(".menu"),
     n = document.querySelector("nav"),
-    d = document.querySelector(".drop"),
-    b = d?.querySelector("button");
+    launcher = document.querySelector(".product-launcher"),
+    launcherButton = launcher?.querySelector(".launcher-toggle"),
+    launcherPanel = launcher?.querySelector(".dropmenu"),
+    loginMenu = document.querySelector(".login-menu"),
+    loginButton = loginMenu?.querySelector(".login-toggle"),
+    loginPanel = loginMenu?.querySelector(".login-options");
+
+  const closeLauncher = (restoreFocus = false) => {
+    if (!launcher || !launcherButton || !launcherPanel) return;
+
+    launcher.classList.remove("open");
+    launcherButton.setAttribute("aria-expanded", "false");
+    launcherPanel.hidden = true;
+
+    if (restoreFocus) launcherButton.focus();
+  };
+
+  const closeLoginMenu = (restoreFocus = false) => {
+    if (!loginMenu || !loginButton || !loginPanel) return;
+
+    loginMenu.classList.remove("open");
+    loginButton.setAttribute("aria-expanded", "false");
+    loginPanel.hidden = true;
+
+    if (restoreFocus) loginButton.focus();
+  };
 
   const blockContextMenu = () => {
     document.addEventListener(
@@ -53,8 +77,16 @@
         }
 
         if (event.key === "Escape") {
+          const menuOpen = n?.classList.contains("open");
+          const launcherOpen = launcherPanel && !launcherPanel.hidden;
+          const loginOpen = loginPanel && !loginPanel.hidden;
+
           n?.classList.remove("open");
-          d?.classList.remove("open");
+          m?.setAttribute("aria-expanded", "false");
+
+          if (launcherOpen) closeLauncher(!menuOpen);
+          if (loginOpen) closeLoginMenu(!menuOpen && !launcherOpen);
+          if (menuOpen) m?.focus();
         }
       },
       { capture: true }
@@ -68,9 +100,11 @@
 
   const protectContactForm = () => {
     document.querySelectorAll("form").forEach((form) => {
-      const trapField = form.querySelector('input[name="company_website"]');
-      const tokenField = form.querySelector("#form_token");
-      const startedField = form.querySelector("#form_started");
+      const trapField = form.querySelector(
+        'input[name="company_website"], input[name="_honey"]'
+      );
+      const tokenField = form.querySelector('input[name="form_token"]');
+      const startedField = form.querySelector('input[name="form_started"]');
 
       if (!trapField || !tokenField || !startedField) return;
 
@@ -83,37 +117,6 @@
             .join("");
         }
         return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-      };
-
-      const writeLog = (eventName, payload = {}) => {
-        const entry = {
-          timestamp: new Date().toISOString(),
-          page: window.location.pathname,
-          eventName,
-          ...payload,
-          userAgent: navigator.userAgent,
-          referrer: document.referrer || "direct",
-        };
-
-        try {
-          const key = "sobola_honeypot_log";
-          const existing = JSON.parse(localStorage.getItem(key) || "[]");
-          existing.push(entry);
-          localStorage.setItem(key, JSON.stringify(existing.slice(-100)));
-        } catch (error) {
-          console.warn("Honeypot log storage not available:", error);
-        }
-
-        const logText = `${JSON.stringify(entry)}\n`;
-        const blob = new Blob([logText], { type: "text/plain;charset=utf-8" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "sobola-honeypot-log.txt";
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(link.href);
       };
 
       const setStarted = () => {
@@ -131,25 +134,27 @@
         const target = event.target;
         if (!(target instanceof HTMLElement)) return;
 
-        if (target === trapField && (trapField.value || "").trim().length > 0) {
-          writeLog("honeypot-filled", {
-            trapFilled: true,
-            startedAt: startedField.value || null,
-            token: tokenField.value || null,
-          });
+        if (target instanceof HTMLInputElement && target.required) {
+          target.setCustomValidity(
+            target.value.trim() ? "" : "Please complete this field."
+          );
+        }
+
+        if (target === trapField && trapField.value.trim().length > 0) {
           form.dataset.botFlag = "true";
         }
 
-        if (target.name && !["company_website", "form_token", "form_started"].includes(target.name)) {
+        if (target.name && !["company_website", "_honey", "form_token", "form_started"].includes(target.name)) {
           setStarted();
         }
       });
 
       form.addEventListener("submit", async (event) => {
-        const submitButton = form.querySelector("#sendButton");
-        const buttonText = form.querySelector("#buttonText");
-        const statusBox = form.querySelector("#formStatus");
-        const trapFilled = (trapField.value || "").trim().length > 0;
+        const submitButton = form.querySelector("#sendButton, #account-submit");
+        const buttonText = form.querySelector("#buttonText, .button-label");
+        const spinner = form.querySelector(".loading-spinner");
+        const statusBox = form.querySelector("#formStatus, #accountFormStatus");
+        const trapFilled = trapField.value.trim().length > 0;
         const timeDelta = startedField.value ? Date.now() - Number(startedField.value) : 0;
         const tooFast = timeDelta > 0 && timeDelta < 1500;
         const suspicious = trapFilled || tooFast || form.dataset.botFlag === "true";
@@ -158,42 +163,57 @@
         event.stopPropagation();
 
         if (suspicious) {
-          writeLog("submit-blocked", {
-            trapFilled,
-            tooFast,
-            startedAt: startedField.value || null,
-            token: tokenField.value || null,
-            formId: form.id || "unknown",
-          });
           if (statusBox) {
-            statusBox.textContent = "Your message could not be submitted.";
+            statusBox.textContent =
+              "Your request could not be submitted. Please check the form and try again.";
             statusBox.className = "error";
           }
-          form.reset();
-          tokenField.value = makeToken();
-          startedField.value = String(Date.now());
+          return false;
+        }
+
+        const blankRequiredField = [...form.querySelectorAll("[required]")].find(
+          (field) => field instanceof HTMLInputElement && !field.value.trim()
+        );
+        if (blankRequiredField) {
+          blankRequiredField.setCustomValidity("Please complete this field.");
+          blankRequiredField.reportValidity();
           return false;
         }
 
         if (submitButton) submitButton.disabled = true;
+        submitButton?.setAttribute("aria-busy", "true");
         if (buttonText) buttonText.textContent = "Sending...";
+        if (spinner) spinner.hidden = false;
         if (statusBox) {
-          statusBox.textContent = "Submitting your message...";
+          statusBox.textContent = "Submitting your request...";
           statusBox.className = "";
         }
 
         try {
           const formData = new FormData(form);
-          const clientName = String(formData.get("name") || "Client").trim();
-          const clientEmail = String(formData.get("email") || "").trim();
+          const clientName = String(
+            formData.get("name") || formData.get("parent_name") || "Client"
+          ).trim();
+          const clientEmail = String(
+            formData.get("email") || formData.get("parent_email") || ""
+          ).trim();
+
+          for (const [key, value] of formData.entries()) {
+            if (typeof value === "string" && key !== "_honey") {
+              formData.set(key, value.trim());
+            }
+          }
 
           formData.delete("company_website");
           formData.delete("form_token");
           formData.delete("form_started");
 
-          if (clientEmail) {
-            formData.set("_replyto", clientEmail);
-            formData.set("_subject", `Service inquiry from ${clientName || "Client"} (${clientEmail})`);
+          if (clientEmail) formData.set("_replyto", clientEmail);
+          if (clientEmail && form.id === "contact-form") {
+            formData.set(
+              "_subject",
+              `Service inquiry from ${clientName || "Client"} (${clientEmail})`
+            );
           }
 
           const response = await fetch(form.action, {
@@ -204,7 +224,12 @@
             body: formData,
           });
 
-          if (!response.ok) {
+          const result = await response.json();
+          if (
+            !response.ok ||
+            result.success === false ||
+            result.success === "false"
+          ) {
             throw new Error("Submission failed");
           }
 
@@ -213,17 +238,27 @@
           startedField.value = String(Date.now());
 
           if (statusBox) {
-            statusBox.textContent = "Your message has been sent successfully.";
+            statusBox.textContent =
+              form.dataset.successMessage ||
+              "Your message has been sent successfully.";
             statusBox.className = "success";
           }
         } catch (error) {
           if (statusBox) {
-            statusBox.textContent = "Your message could not be sent. Please email support@sobola.org directly.";
+            statusBox.textContent =
+              "Your request could not be sent. Please try again or email support@sobola.org.";
             statusBox.className = "error";
           }
         } finally {
           if (submitButton) submitButton.disabled = false;
-          if (buttonText) buttonText.textContent = "Send Email";
+          submitButton?.removeAttribute("aria-busy");
+          if (buttonText) {
+            buttonText.textContent =
+              form.id === "account-request-form"
+                ? "Submit account request"
+                : "Send Email";
+          }
+          if (spinner) spinner.hidden = true;
         }
 
         return false;
@@ -237,15 +272,45 @@
   m?.addEventListener("click", () => {
     const o = n.classList.toggle("open");
     m.setAttribute("aria-expanded", o);
+
+    if (!o) {
+      closeLauncher();
+      closeLoginMenu();
+    }
   });
 
-  b?.addEventListener("click", (e) => {
+  launcherButton?.addEventListener("click", (e) => {
     e.stopPropagation();
-    const o = d.classList.toggle("open");
-    b.setAttribute("aria-expanded", o);
+    closeLoginMenu();
+    const isOpen = launcherPanel && !launcherPanel.hidden;
+
+    if (isOpen) {
+      closeLauncher();
+      return;
+    }
+
+    launcher?.classList.add("open");
+    launcherPanel.hidden = false;
+    launcherButton.setAttribute("aria-expanded", "true");
+  });
+
+  loginButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    closeLauncher();
+    const isOpen = loginPanel && !loginPanel.hidden;
+
+    if (isOpen) {
+      closeLoginMenu();
+      return;
+    }
+
+    loginMenu?.classList.add("open");
+    if (loginPanel) loginPanel.hidden = false;
+    loginButton.setAttribute("aria-expanded", "true");
   });
 
   document.addEventListener("click", (e) => {
-    if (d && !d.contains(e.target)) d.classList.remove("open");
+    if (launcher && !launcher.contains(e.target)) closeLauncher();
+    if (loginMenu && !loginMenu.contains(e.target)) closeLoginMenu();
   });
 })();

@@ -3,26 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>About Sobola Finance Ltd | Smart School Digital Solutions Uganda</title>
+    <title>About Sobola Finance Limited | Uganda</title>
     <meta
       name="description"
-      content="Learn about Sobola Finance Ltd, a Ugandan technology company delivering secure school payment, attendance, parent communication, and digital operations solutions."
-    />
-    <meta
-      name="keywords"
-      content="About Sobola Finance Ltd, school digital solutions Uganda, education technology Uganda, school payment systems, school attendance solutions, smart school management, Sobola Uganda"
+      content="Learn about Sobola Finance Limited and its practical digital tools for Pocket Pay, school attendance, gate operations and school communities."
     />
     <meta name="theme-color" content="#5b35d5" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="About Sobola Finance Ltd | Smart School Digital Solutions Uganda" />
+    <meta property="og:title" content="About Sobola Finance Limited | Uganda" />
     <meta
       property="og:description"
-      content="Learn about Sobola Finance Ltd, a Ugandan technology company delivering secure school payment, attendance, parent communication, and digital operations solutions."
+      content="Learn about Sobola Finance Limited and its practical digital tools for Pocket Pay, school attendance, gate operations and school communities."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sobola.org/about.html" />
-    <meta property="og:image" content="https://sobola.org/assets/logos/sobola-logo.png" />
-    <link rel="canonical" href="https://sobola.org/about.html" />
+    <meta property="og:url" content="https://website.sobola.org/about.html" />
+    <meta property="og:image" content="https://website.sobola.org/assets/logos/sobola-logo.png" />
+    <link rel="canonical" href="https://website.sobola.org/about.html" />
     <link rel="icon" type="image/png" href="assets/logos/sobola-logo.png" />
     <link
       rel="shortcut icon"
@@ -45,23 +41,46 @@
         <nav>
           <a href="index.html">Home</a
           ><a href="about.html" aria-current="page">About Us</a>
-          <div class="drop">
-            <button aria-expanded="false">Products ▾</button>
-            <div class="dropmenu">
-              <a href="products/pocket-pay.html"
-                ><b>Pocket Pay</b><small>Cashless school payments</small></a
-              ><a href="products/gate-attendance.html"
-                ><b>Gate & Attendance</b
-                ><small>School checkpoint visibility</small></a
-              ><a href="products/staff-attendance.html"
-                ><b>Staff Attendance</b
-                ><small>Staff access visibility</small></a
-              ><a href="products.html"
-                ><b>All Products</b><small>View the full portfolio</small></a
-              >
+          <a href="contact.html">Contact Us</a>
+          <div class="login-menu">
+            <button class="login-toggle" type="button" aria-expanded="false" aria-controls="login-options">Log in to Sobola Platforms</button>
+            <div class="login-options" id="login-options" hidden>
+              <p class="login-menu-title">Choose your portal</p>
+              <a href="https://sobola.org/portal"><span class="login-role-icon" aria-hidden="true">P</span><span class="login-role-copy"><strong>Parent</strong><small>Student account and top-ups</small></span></a>
+              <a href="https://sobola.org"><span class="login-role-icon" aria-hidden="true">S</span><span class="login-role-copy"><strong>School Admin</strong><small>School platform and records</small></span></a>
+              <a href="https://sobola.org"><span class="login-role-icon" aria-hidden="true">A</span><span class="login-role-copy"><strong>Attendant</strong><small>Gate and attendance access</small></span></a>
+              <a href="index.html"><span class="login-role-icon" aria-hidden="true">G</span><span class="login-role-copy"><strong>Guest User</strong><small>Browse the Sobola website</small></span></a>
+              <a class="login-request" href="account-request.html"><span class="login-role-icon" aria-hidden="true">+</span><span class="login-role-copy"><strong>No Account?</strong><small>Request parent account access</small></span></a>
             </div>
           </div>
-          <a href="contact.html">Contact Us</a>
+          <div class="product-launcher">
+            <button class="launcher-toggle" type="button" aria-label="Sobola products" aria-expanded="false" aria-controls="sobola-products-panel" title="Sobola products">
+              <svg class="launcher-grid-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="5" r="1.7" /><circle cx="12" cy="5" r="1.7" /><circle cx="19" cy="5" r="1.7" />
+                <circle cx="5" cy="12" r="1.7" /><circle cx="12" cy="12" r="1.7" /><circle cx="19" cy="12" r="1.7" />
+                <circle cx="5" cy="19" r="1.7" /><circle cx="12" cy="19" r="1.7" /><circle cx="19" cy="19" r="1.7" />
+              </svg>
+              <span class="launcher-label">Products</span>
+            </button>
+            <div class="dropmenu" id="sobola-products-panel" aria-label="Sobola products" hidden>
+              <div class="launcher-heading"><h2>Our products</h2><p>Digital tools for schools and institutions</p></div>
+              <div class="launcher-grid">
+                <a class="launcher-card" href="products/pocket-pay.html">
+                  <span class="launcher-icon launcher-icon-pay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="13" height="12" rx="3" /><path d="M7 10h6M7 14h3m8-5c1.3 1 1.3 5 0 6m2-8c2.5 2 2.5 8 0 10" /></svg></span>
+                  <span><b>Pocket Pay</b><small>Cashless school payments</small></span>
+                </a>
+                <a class="launcher-card" href="products/gate-attendance.html">
+                  <span class="launcher-icon launcher-icon-gate" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v15M9 20V8h6v12M3 20h18" /><path d="m11 14 2 2 4-5" /></svg></span>
+                  <span><b>Gate & Attendance</b><small>Student check-in and exits</small></span>
+                </a>
+                <a class="launcher-card" href="products/staff-attendance.html">
+                  <span class="launcher-icon launcher-icon-staff" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0M18 5.5a3 3 0 0 1 0 5.8M20 15a5 5 0 0 1 2 4" /></svg></span>
+                  <span><b>Staff Attendance</b><small>Planned product</small></span>
+                </a>
+              </div>
+              <a class="launcher-all" href="products.html">Browse all products <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
@@ -69,55 +88,212 @@
       <section class="pagehero about-hero">
         <div class="container about-hero-grid">
           <div class="about-hero-copy">
-            <span class="eyebrow">About Us</span>
+            <span class="eyebrow">About Sobola</span>
             <h1>About Sobola Finance Ltd</h1>
             <p>
-              Verified company information, business direction and product
-              portfolio.
+              Sobola Finance Limited is a Ugandan company established in 2024.
+              We create practical digital tools for schools, institutions,
+              businesses, parents and communities.
             </p>
           </div>
           <div class="about-spotlight" aria-label="Sobola company overview">
             <div class="about-mini-stat">
-              <strong>Founded</strong>
-              <span>April 2023</span>
+              <strong>Established</strong>
+              <span>2024</span>
             </div>
             <div class="about-mini-stat">
               <strong>Focus</strong>
-              <span>Schools & institutions</span>
+              <span>Digital tools</span>
             </div>
             <div class="about-mini-stat">
-              <strong>Core</strong>
-              <span>Payments, access, visibility</span>
+              <strong>Designed for</strong>
+              <span>Schools & institutions</span>
             </div>
           </div>
         </div>
       </section>
-      <section class="section">
+      <section class="section about-section">
         <div class="container two">
           <div>
-            <span class="eyebrow">Company profile</span>
-            <h2>Built for real institutional needs.</h2>
+            <span class="eyebrow">Company overview</span>
+            <h2>Practical tools for everyday operations.</h2>
             <p>
-              Sobola Finance Ltd was incorporated in Kampala on 5 April 2023 as
-              a private company limited by shares. The registered office is in
-              Mukalazi Zone A, Bukoto I, Nakawa Division, Kampala, with postal
-              address P.O. Box 116553, Kampala GPO.
+              Based in Kampala, Sobola Finance Limited develops digital tools
+              that help schools, institutions, businesses, parents and
+              communities manage daily operations more efficiently,
+              transparently and securely.
             </p>
             <p>
-              The company's registered objects include financial services,
-              lending and finance, mobile money, agency banking, financial
-              advisory, business consultancy, procurement and related commercial
-              activities. The 2026 trade licence records Mobile Money as the
-              nature of business.
+              We focus on challenges such as student pocket money, cash
+              handling, transaction records, attendance reporting, school
+              security, meal planning and access to reliable operational
+              information. These tools support organised records and more
+              informed day-to-day decisions.
             </p>
           </div>
-          <div class="factbox about-factbox">
-            <b>Company</b><strong>Sobola Finance Ltd</strong>
-            <hr />
-            <b>Incorporated</b><strong>5 April 2023</strong>
-            <hr />
-            <b>Telephone</b><a href="tel:+256730728831">+256 730 728831</a>
-            <b>Telephone</b><a href="tel:+256730728830">+256 730 728830</a>
+          <aside class="about-factbox" aria-label="Sobola at a glance">
+            <div class="about-factbox-heading">
+              <span>At a glance</span>
+              <h3>Sobola Finance Limited</h3>
+            </div>
+            <dl class="about-facts">
+              <div>
+                <dt>Established</dt>
+                <dd>2024</dd>
+              </div>
+              <div>
+                <dt>Based in</dt>
+                <dd>Kampala, Uganda</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Schools &amp; communities</dd>
+              </div>
+              <div>
+                <dt>Talk to us</dt>
+                <dd><a href="tel:+256730728831">+256 730 728 831</a></dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+      <section class="section soft about-section">
+        <div class="container two">
+          <div>
+            <span class="eyebrow">Our purpose</span>
+            <h2>Make essential services easier to manage.</h2>
+            <p>
+              Many schools and institutions still rely on cash, paper
+              registers and separate reporting processes. These manual
+              workflows can make record keeping, reconciliation and
+              accountability harder.
+            </p>
+            <p>
+              Sobola develops digital tools that help organise these processes
+              through organised records, timely transaction visibility,
+              reporting tools and straightforward management interfaces.
+              Technology should be practical and shaped around the people who
+              use it.
+            </p>
+          </div>
+          <div>
+            <span class="eyebrow">Pocket Pay</span>
+            <h2>Digital pocket money for school communities.</h2>
+            <p>
+              Pocket Pay helps schools, parents, students and authorised
+              school service providers manage student pocket money. Parents or
+              guardians can add funds to a learner's account; students can use
+              an assigned wristband to make authorised purchases at supported
+              school points.
+            </p>
+            <p>
+              Each supported wristband purchase is recorded electronically,
+              helping parents and authorised school teams review account
+              activity. Canteen and school-shop records can support reporting,
+              sales monitoring, account reviews and reconciliation. Payment
+              channels are provided through the school's configured setup and
+              relevant service providers.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section about-section">
+        <div class="container">
+          <span class="eyebrow">School operations</span>
+          <h2>Connected tools for school operations.</h2>
+          <div class="grid3">
+            <article>
+              <h3>Attendance reporting</h3>
+              <p>
+                Capture and organise student attendance records digitally.
+                Structured information helps authorised administrators review
+                attendance and prepare reports.
+              </p>
+            </article>
+            <article>
+              <h3>Gate and security</h3>
+              <p>
+                Record student entry, approved access and exit events to help
+                schools maintain clearer movement records and accountability
+                at checkpoints.
+              </p>
+            </article>
+            <article>
+              <h3>Meal planning</h3>
+              <p>
+                Digital meal-planning and meal-management tools help
+                institutions organise student meal information, estimate
+                requirements, monitor service and reduce avoidable waste.
+              </p>
+            </article>
+          </div>
+          <p>
+            Solutions can be used independently or as part of a connected
+            digital environment, based on each institution's needs.
+          </p>
+        </div>
+      </section>
+      <section class="section soft about-section">
+        <div class="container two">
+          <div>
+            <span class="eyebrow">Our approach</span>
+            <h2>Built around the people who use them.</h2>
+            <p>
+              We learn about each institution's processes, users, reporting
+              needs and available infrastructure. Configuration, testing,
+              implementation, user training and technical support can help
+              each tool fit the way the institution works.
+            </p>
+          </div>
+          <div>
+            <span class="eyebrow">Security and accountability</span>
+            <h2>Clear records. Thoughtful access.</h2>
+            <p>
+              Sobola solutions use role-based access so users can work with
+              the information relevant to their responsibilities. Depending on
+              the product, authorised users can review transaction references,
+              activity records, attendance, student information and reports.
+            </p>
+            <p>
+              Electronic records support traceability and help authorised
+              teams review operational issues. We encourage institutions to
+              manage access responsibly and follow applicable privacy and
+              data-protection requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section about-section">
+        <div class="container two">
+          <div>
+            <span class="eyebrow">Who we serve</span>
+            <h2>For schools and their communities.</h2>
+            <p>
+              Sobola solutions are designed for primary and secondary schools,
+              boarding and day schools, canteens, cafeterias, school shops,
+              parents, guardians, students, administrators, bursars and
+              institutional service providers.
+            </p>
+            <p>
+              Each institution has different operating needs. Our goal is to
+              provide technology that is understandable, manageable and
+              suited to its users.
+            </p>
+          </div>
+          <div>
+            <span class="eyebrow">Our experience</span>
+            <h2>Learning and improving since 2024.</h2>
+            <p>
+              Since beginning operations in 2024, we have developed our
+              technology, improved our processes and learned from the
+              day-to-day needs of schools, parents, students, administrators
+              and service operators.
+            </p>
+            <p>
+              User feedback and responsible partnerships help guide product
+              improvements, technical support and the development of new
+              digital tools.
+            </p>
           </div>
         </div>
       </section>
@@ -165,11 +341,21 @@
               />
               <div class="card-copy">
                 <h3>Staff Attendance</h3>
-                <p>Secure staff access and presence visibility.</p>
+                <p>A planned product for staff attendance records.</p>
                 <a href="products/staff-attendance.html">View preview →</a>
               </div>
             </article>
           </div>
+        </div>
+      </section>
+      <section class="section soft">
+        <div class="container cta">
+          <h2>Let's build smarter digital solutions together.</h2>
+          <p>
+            Talk to Sobola about Pocket Pay or your
+            institution's operational needs.
+          </p>
+          <a class="btn white" href="contact.html">Contact Sobola</a>
         </div>
       </section>
       <section class="section">
